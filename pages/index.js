@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import appConfig from '../config.json';
 
 
-function Titulo(props) {
+function Title(props) {
     const Tag = props.tag || 'h1';
     return (
         <>
@@ -30,7 +30,7 @@ export default function PaginaInicial() {
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     backgroundColor: appConfig.theme.colors.primary[500],
-                    backgroundImage: 'url(https://virtualbackgrounds.site/wp-content/uploads/2020/07/futuristic-office-1536x864.jpg)',
+                    backgroundImage: 'url(https://uoledtech.com.br/hubfs/Imported_Blog_Media/EAD-1.jpg)',
                     backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 }}
             >
@@ -61,7 +61,7 @@ export default function PaginaInicial() {
                             width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
                         }}
                     >
-                        <Titulo tag="h2">Bem-vindo, venha nos Conhecer!</Titulo>
+                        <Title tag="h2">Welcome, come meet us!</Title>
                         <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
                             {appConfig.name}
                         </Text>
