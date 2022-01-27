@@ -1,17 +1,43 @@
 import { Box, Text, TextField, Image, Button } from '@skynexui/components';
 import React from 'react';
 import appConfig from '../config.json';
+import { createClient } from '@supabase/supabase-js'
+
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzI5NzEwNCwiZXhwIjoxOTU4ODczMTA0fQ.Ov9CRyGP7fi8UnUT0ulW2gFkdORhiPHBPZJfO5cJDsQ';
+const SUPABASE_URL = 'https://xmhrijydsbfxkvamjdsv.supabase.co';
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export default function ChatPage() {
     const [message, setMessage] = React.useState('');
     const [listMessage, setListMessage] = React.useState([]);
 
+    React.useEffect(() => {
+        supabaseClient
+        .from('messages')
+        .select('*')
+        .order('id', { ascending: false })
+        .then(({data}) => {
+            setListMessage(data);
+        });
+    }, []);
+
     function handleNewMessage(newMessage) {
         const message = {
-            id: listMessage.length + 1,
             from: 'IcaroApoloBR',
             text: newMessage,
         };
+
+        supabaseClient
+            .from('messages')
+            .insert([
+                message
+            ])
+            .then(( data ) => {
+                setListMessage([
+                    data[0],
+                    ...listMessage
+                ]);
+            });
 
         setListMessage([
             message,
@@ -158,7 +184,7 @@ function MessageList(props) {
                                     display: 'inline-block',
                                     marginRight: '8px',
                                 }}
-                                src={`https://github.com/IcaroApoloBR.png`}
+                                src={`https://github.com/${message.from}.png`}
                             />
                             <Text tag="strong">
                                 {message.from}

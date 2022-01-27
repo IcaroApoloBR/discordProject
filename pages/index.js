@@ -2,7 +2,10 @@ import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
+import { createClient } from '@supabase/supabase-js'
 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzI5NzEwNCwiZXhwIjoxOTU4ODczMTA0fQ.Ov9CRyGP7fi8UnUT0ulW2gFkdORhiPHBPZJfO5cJDsQ'
+const SUPABASE_URL = 'https://xmhrijydsbfxkvamjdsv.supabase.co'
 
 function Title(props) {
     const Tag = props.tag || 'h1';
