@@ -41,7 +41,7 @@ export default function CustomApp({ Component, pageProps }) {
         <>
             <GlobalStyle />
             <title>DiscordProject</title>
-            <Component {...pageProps} />;
+            <Component {...pageProps} />
         </>
     );
 }
