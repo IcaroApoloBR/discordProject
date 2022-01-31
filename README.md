@@ -15,5 +15,5 @@ Realizado em uma semana intensa de aulas da 4ª Imersão React da @alura, minist
 
 Trabalho hospedado online, você poderá acessar o projeto no seguinte link: https://discord-project.vercel.app/
 
-![Preview da tela de Login](./public/assets/preview-login.png)
-![Preview da tela de Chat](./public/assets/preview-chat.png)
+![Preview da tela de Login](https://github.com/IcaroApoloBR/discordProject/blob/main/.github/login.png)
+![Preview da tela de Chat](https://github.com/IcaroApoloBR/discordProject/blob/main/.github/chat.png)
