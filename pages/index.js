@@ -29,7 +29,7 @@ export default function PaginaInicial() {
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     backgroundColor: appConfig.theme.colors.primary[500],
-                    backgroundImage: 'url(https://uoledtech.com.br/hubfs/Imported_Blog_Media/EAD-1.jpg)',
+                    backgroundImage: 'url(https://images.unsplash.com/photo-1516116216624-53e697fedbea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80)',
                     backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 }}
             >
@@ -45,7 +45,8 @@ export default function PaginaInicial() {
                         width: '100%', maxWidth: '700px',
                         borderRadius: '5px', padding: '32px', margin: '16px',
                         boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-                        backgroundColor: appConfig.theme.colors.neutrals[700],
+                        backgroundColor: 'rgba(19, 24, 38, 0.85)',
+                        //backgroundColor: appConfig.theme.colors.neutrals[700],
                     }}
                 >
                     {/* Formulário */}
@@ -66,6 +67,7 @@ export default function PaginaInicial() {
                         </Text>
 
                         <TextField
+                            placeholder="Enter your Github User"
                             value={username}
                             onChange={function (event) {
                                 const value = event.target.value;
@@ -83,7 +85,7 @@ export default function PaginaInicial() {
                         />
                         <Button
                             type='submit'
-                            label='Entrar'
+                            label='Sign In'
                             fullWidth
                             buttonColors={{
                                 contrastColor: appConfig.theme.colors.neutrals["000"],
@@ -104,12 +106,14 @@ export default function PaginaInicial() {
                             alignItems: 'center',
                             maxWidth: '200px',
                             padding: '16px',
-                            backgroundColor: appConfig.theme.colors.neutrals[800],
+                            backgroundColor: 'rgba(14, 17, 22, 0.5)',
+                            //backgroundColor: appConfig.theme.colors.neutrals[800],
                             border: '1px solid',
-                            borderColor: appConfig.theme.colors.neutrals[999],
+                            borderColor: appConfig.theme.colors.neutrals[500],
                             borderRadius: '10px',
                             flex: 1,
                             minHeight: '240px',
+                            boxShadow: '19px 13px 20px -12px rgba(0,0,0,0.1)',
                         }}
                     >
                         <Image

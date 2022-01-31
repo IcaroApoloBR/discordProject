@@ -1,5 +1,6 @@
 import { Box, Text, TextField, Image, Button } from '@skynexui/components';
 import React from 'react';
+import { FaShareSquare } from 'react-icons/fa';
 import appConfig from '../config.json';
 import { useRouter } from 'next/router';
 import { createClient } from '@supabase/supabase-js'
@@ -37,10 +38,10 @@ export default function ChatPage() {
             setListMessage((valorAtualDaLista) => {
                 return [
                     newMessage,
-                  ...valorAtualDaLista,
+                    ...valorAtualDaLista,
                 ]
-              });
             });
+        });
     }, []);
 
     function handleNewMessage(newMessage) {
@@ -54,7 +55,7 @@ export default function ChatPage() {
             .insert([
                 message
             ])
-            .then(({data}) => {
+            .then(({ data }) => {
                 console.log('Criando mensagem: ', data);
             });
 
@@ -66,7 +67,7 @@ export default function ChatPage() {
             styleSheet={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: appConfig.theme.colors.primary[500],
-                backgroundImage: `url(https://uoledtech.com.br/hubfs/Imported_Blog_Media/EAD-1.jpg)`,
+                backgroundImage: `url(https://images.unsplash.com/photo-1516116216624-53e697fedbea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80)`,
                 backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 color: appConfig.theme.colors.neutrals['000']
             }}
@@ -78,7 +79,8 @@ export default function ChatPage() {
                     flex: 1,
                     boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
                     borderRadius: '5px',
-                    backgroundColor: appConfig.theme.colors.neutrals[700],
+                    backgroundColor: 'rgba(14, 17, 22, 0.5)',
+                    //backgroundColor: appConfig.theme.colors.neutrals[700],
                     height: '100%',
                     maxWidth: '95%',
                     maxHeight: '95vh',
@@ -92,7 +94,6 @@ export default function ChatPage() {
                         display: 'flex',
                         flex: 1,
                         height: '80%',
-                        backgroundColor: appConfig.theme.colors.neutrals[600],
                         flexDirection: 'column',
                         borderRadius: '5px',
                         padding: '16px',
@@ -124,11 +125,11 @@ export default function ChatPage() {
                             type="textarea"
                             styleSheet={{
                                 width: '100%',
-                                border: '0',
+                                height: '40px',
                                 resize: 'none',
-                                borderRadius: '5px',
-                                padding: '6px 8px',
-                                backgroundColor: appConfig.theme.colors.neutrals[800],
+                                borderRadius: '2px',
+                                backgroundColor: 'rgba(14, 17, 22, 0.5)',
+                                //backgroundColor: appConfig.theme.colors.neutrals[400],
                                 marginRight: '12px',
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
@@ -150,13 +151,23 @@ function Header() {
         <>
             <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
                 <Text variant='heading5'>
-                    Chat
+                    Chat Room
                 </Text>
                 <Button
                     variant='tertiary'
                     colorVariant='neutral'
-                    label='Logout'
+                    label={< FaShareSquare />}
+                    //label='Logout'
                     href="/"
+                    styleSheet={{
+                        borderRadius: '5px',
+                        minWidth: '42px',
+                        minHeight: '42px',
+                        marginRight: '20px',
+                        backgroundColor: appConfig.theme.colors.primary[900],
+                        color: appConfig.theme.colors.neutrals[100],
+                    }}
+
                 />
             </Box>
         </>
@@ -168,7 +179,7 @@ function MessageList(props) {
         <Box
             tag="ul"
             styleSheet={{
-                overflow: 'scroll',
+                overflow: 'auto',
                 display: 'flex',
                 flexDirection: 'column-reverse',
                 flex: 1,
@@ -218,10 +229,15 @@ function MessageList(props) {
                             >
                                 {(new Date().toLocaleDateString())}
                             </Text>
+
                         </Box>
                         {message.text.startsWith(':sticker:')
                             ? (
-                                <Image src={message.text.replace(':sticker:', '')} />
+                                <Image src={message.text.replace(':sticker:', '')} 
+                                styleSheet={{
+                                    width: '150px',
+                                }}
+                                />
                             )
                             : (
                                 message.text
